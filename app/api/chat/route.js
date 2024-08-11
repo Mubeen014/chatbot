@@ -18,7 +18,7 @@ export async function POST(req) {
   const user = auth.currentUser;
 
   // Initialize systemPrompt with default values
-  let systemPrompt = `Reply to every message like a gen z`;
+  let systemPrompt = `You are a customer support bot designed to assist individuals who are experiencing mental health issues.`;
 
   if (user) {
     const userId = user.uid;
@@ -38,11 +38,11 @@ export async function POST(req) {
       Sex: ${sex}.`;
     } else {
       // Handle case where user data does not exist
-      systemPrompt = `Reply to every message in snake voice`;
+      systemPrompt = `You are a customer support bot designed to assist individuals who are experiencing mental health issues.`;
     }
   } else {
     // Handle case where user is not authenticated
-    systemPrompt = `Reply to every message in capital letters.`;
+    systemPrompt = `You are a customer support bot designed to assist individuals who are experiencing mental health issues.`;
   }
 
   try {
