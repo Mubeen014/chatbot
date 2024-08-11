@@ -5,8 +5,9 @@ import { Box, Button, Stack, TextField, Typography, Container } from '@mui/mater
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation'; // Import useRouter from next/navigation
 import { auth } from '@/firebaseConfig'; // Adjust path as needed
+import { AspectRatio } from '@mui/icons-material';
 
-const UserPageWithChatbot = () => {
+const Blud = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -14,6 +15,7 @@ const UserPageWithChatbot = () => {
     },
   ]);
   const [message, setMessage] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Manage sidebar open state
   const router = useRouter(); // Initialize useRouter
 
   const sendMessage = async () => {
@@ -64,56 +66,88 @@ const UserPageWithChatbot = () => {
     }
   };
 
+
   return (
-    <Container maxWidth="false" disableGutters>
-      <Box 
-        sx={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'center', 
-          mt: 8 
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        padding: 2
+      }}
+    >
+      {/* Top Box */}
+      <Box
+        sx={{
+          backgroundColor: '#1976d2',
+          color: '#fff',
+          padding: 2,
+          flex: '0 1 auto', // Allows the top box to fit its content
+          width: '100%',
+          height: '100px',
+          borderRadius: 8,
+          textAlign: 'center',
         }}
       >
-        
-        <Typography variant="h4" component="h1" gutterBottom>
-          Welcome to User Page
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSignOut}
-        >
-          Sign Out
-        </Button>
+        Top Box (Full Width)
       </Box>
+
+      {/* Bottom Boxes Container */}
       <Box
-        width="100vw"
-        height="calc(100vh - 64px)" // Adjusting height to fit the screen minus the header space
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-end" // Aligning chatbox to the right
-        mt={4} // Adding margin-top for spacing
-        overflow="hidden" // Prevent overflow
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          flex: '1 1 auto', // Allows bottom boxes to take the remaining space
+          gap: 2,
+          marginTop: 2,
+        }}
       >
+        {/* Bottom Box 1 */}
         <Box
-          width="calc(90vw - 250px)" // Adjust width to ensure it fits on the right side
-          height="90vh" // Adjusted height to 90% of viewport height
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          border="1px solid black"
-          p={2}
+          sx={{
+            backgroundColor: '#4caf50',
+            color: '#fff',
+            width: '10%', 
+            padding: 2,
+            height: '100%',
+            borderRadius: 2,
+            textAlign: 'center',
+            position: 'relative',
+          }}
+        >
+          <Box
+            sx={{
+              width: '100px',
+              height:'100px',
+              bottom:50,
+              position:'fixed',
+              border: '1px solid grey'
+
+            }}
+            >
+          </Box>
+          Bruh
+        </Box>
+        <Box // Bottom box 2
+          sx={{
+            flex: '1 1',
+            padding: 2,
+            borderRadius: 2,
+            textAlign: 'left',
+            overflowY: 'auto',
+            maxHeight: '520px',
+            position: 'relative',
+          }}
         >
           <Stack
             direction={'column'}
             width="100%" // Full width of the parent container
             height="100%" // Full height of the parent container
-            spacing={3}
+            spacing={0}
           >
             <Stack
               direction={'column'}
-              spacing={2}
+              spacing={3}
               flexGrow={1}
               overflow="auto" // Allow scroll inside this Stack if needed
               maxHeight="100%"
@@ -129,9 +163,10 @@ const UserPageWithChatbot = () => {
                   <Box
                     bgcolor={
                       message.role === 'assistant'
-                        ? 'primary.main'
-                        : 'secondary.main'
+                        ? 'blue'
+                        : 'purple'
                     }
+                    variant='outlined'
                     color="white"
                     borderRadius={16}
                     p={3}
@@ -148,16 +183,15 @@ const UserPageWithChatbot = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <Button variant="contained" onClick={sendMessage}>
-                Send
+              <Button onClick={sendMessage}
+>
+                <img src='send.png' alt='Button Image' />
               </Button>
             </Stack>
           </Stack>
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
-  
-};  
-
-export default UserPageWithChatbot;
+};
+export default Blud;

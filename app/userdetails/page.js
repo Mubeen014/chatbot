@@ -66,7 +66,7 @@ const UserDetailsPage = () => {
           margin="normal"
         />
         <TextField
-          label="Sex"
+          label="Gender"
           fullWidth
           value={sex}
           onChange={(e) => setSex(e.target.value)}

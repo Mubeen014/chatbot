@@ -1,10 +1,13 @@
 // Import necessary modules
-import UserPageContent from './UserPageContent'; // Adjust path as needed
 
-const UserPage = () => {
+import UserPageWithChatbot from './UserPageContent';
+import Blud from './Blud';
+
+
+const Home = () => {
   return (
-    <UserPageContent /> // Render the UserPageContent component
+    <Blud /> // Render the UserPageContent component
   );
 };
 
-export default UserPage;
+export default Home;
